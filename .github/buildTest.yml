@@ -1,0 +1,23 @@
+name: Perform CICD Operations on Console Based Java Application
+on: push
+jobs:
+  CICD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Clone Project
+        uses: actions/checkout@v3     
+
+      - name: 2. Set up JDK 17 From My Friend Temurin
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 3. Compile Java Console App Project
+        run: javac WelcomeWorld.java
+
+      - name: 4. Check Class Generated
+        run: ls -ltra
+
+      - name: 5. Run Java Console App Project
+        run: java WelcomeWorld
